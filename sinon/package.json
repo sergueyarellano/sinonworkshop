@@ -1,0 +1,19 @@
+{
+    "name": "sinon",
+    "version": "1.0.0",
+    "description": "Testing",
+    "main": "lib/sinon.js",
+    "scripts": {
+        "test": "mocha --recursive test",
+        "lint": "eslint lib test --max-warnings 0"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "check-dependencies": "0.11.0",
+        "eslint": "3.2.2",
+        "mocha": "2.4.5",
+        "path": "^0.12.7",
+        "sinon": "1.17.3"
+    }
+}

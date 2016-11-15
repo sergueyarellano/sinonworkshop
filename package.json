@@ -1,0 +1,23 @@
+{
+  "name": "sinonworkshop",
+  "version": "1.0.0",
+  "description": "Practical workshop with sinon.js and QUnit",
+  "main": "index.js",
+  "scripts": {
+    "test": "qunit -c ./code/code.js -t ./tests/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sergueyarellano/sinonworkshop.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sergueyarellano/sinonworkshop/issues"
+  },
+  "homepage": "https://github.com/sergueyarellano/sinonworkshop#readme",
+  "dependencies": {
+    "qunit": "^0.9.1",
+    "sinon": "^1.17.6"
+  }
+}
