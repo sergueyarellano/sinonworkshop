@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/sergueyarellano/sinonworkshop#readme",
   "dependencies": {
+    "istanbul": "^0.4.5",
     "qunit": "^0.9.1",
     "sinon": "^1.17.6"
   }
