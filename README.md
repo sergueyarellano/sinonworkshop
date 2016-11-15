@@ -27,7 +27,32 @@ function setupNewUser(info) {
 }
 ```
 
+## Type of functions
 
+### Without side effects
+
+- Dependent on its parameters:
+	the result of "toLowerCase" depends only on the string that it is passed -> Nice! :)
+
+### With side effects
+
+- Dependent on external stuff:
+	the result of "Database.save" does some kind of operation -> test-doubles -> hooray!
+
+```javascript
+QUnit.test('Should call save once', function(assert) {
+	var save = sinon.spy(Database, 'save'); // Wrap save method
+
+	setupNewUser({ name : 'serguey' }); // call the function to test
+
+	assert.deepEqual( save.calledOnce, true)
+
+	save.restore(); // unWrap method
+
+
+ 
+})
+```
 Sources
 - https://semaphoreci.com/community/tutorials/best-practices-for-spies-stubs-and-mocks-in-sinon-js
 - http://stackoverflow.com/questions/4904096/whats-the-difference-between-unit-functional-acceptance-and-integration-test
