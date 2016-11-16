@@ -47,7 +47,7 @@ test('invoke: should throw an error if the method is not defined', (assert) => {
 
   assert.ok(spyInvoke.calledThrice)
   assert.deepEqual(spyInvoke.firstCall.args[0], 'multiply')
-  assert.deepEqual(spyInvoke.secondCall.args[0], 'multiply')
+  assert.deepEqual(spyInvoke.secondCall.args[0], 'add')
   assert.deepEqual(spyInvoke.lastCall.args[0], 'traverse')
   assert.end()
 })
