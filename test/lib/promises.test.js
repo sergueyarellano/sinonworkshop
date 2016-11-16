@@ -12,7 +12,7 @@ test('toss: should toss a 6', (t) => {
 })
 
 test('toss: should toss an error', (t) => {
-  const expected = 4
+  const expected = 'Not a six'
 
   promises.toss(4)
   .then(actual => {

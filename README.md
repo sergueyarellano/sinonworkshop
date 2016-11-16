@@ -49,10 +49,10 @@ QUnit.test('Should call save once', function(assert) {
 
 	save.restore(); // unWrap method
 
-
- 
 })
 ```
+
+
 Sources
 - https://semaphoreci.com/community/tutorials/best-practices-for-spies-stubs-and-mocks-in-sinon-js
 - http://stackoverflow.com/questions/4904096/whats-the-difference-between-unit-functional-acceptance-and-integration-test
