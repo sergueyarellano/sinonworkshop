@@ -10,3 +10,8 @@ module.exports = {
      return this[fn](...args);
   }
 }
+
+// resolver promesas
+// - cuando se lance una excepción throw
+
+// subscribe methods, unsubscribe
