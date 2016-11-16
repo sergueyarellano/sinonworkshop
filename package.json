@@ -2,23 +2,37 @@
   "name": "sinonworkshop",
   "version": "1.0.0",
   "description": "Practical workshop with sinon.js and QUnit",
-  "main": "index.js",
+  "main": "lib/code.js",
   "scripts": {
-    "test": "qunit -c ./code/code.js -t ./tests/test.js --cov"
+    "lint": " standard --verbose | snazzy",
+    "precommit": "npm test",
+    "coverage": "istanbul cover tape -- test/index.test.js",
+    "tape": "tape test/**/*.test.js | faucet",
+    "test": "npm run lint && npm run coverage | tap-spec",
+    "watch:test": "nodemon --exec \"npm run tape\""
   },
+  "files": [
+    "lib"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sergueyarellano/sinonworkshop.git"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/sergueyarellano/sinonworkshop/issues"
   },
   "homepage": "https://github.com/sergueyarellano/sinonworkshop#readme",
   "dependencies": {
+    "faucet": "0.0.1",
     "istanbul": "^0.4.5",
-    "qunit": "^0.9.1",
-    "sinon": "^1.17.6"
+    "nodemon": "^1.11.0",
+    "require-all": "^2.0.0",
+    "sinon": "^1.17.6",
+    "snazzy": "^5.0.0",
+    "standard": "^8.5.0",
+    "tap-spec": "^4.1.1",
+    "tape": "^4.6.2"
   }
 }
