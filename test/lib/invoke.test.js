@@ -1,5 +1,5 @@
 const test = require('tape')
-const codeModule = require('../../lib/code.js')
+const codeModule = require('../../lib/invoke.js')
 
 test('add: should add two numbers', (t) => {
   const actual = codeModule.invoke('add', 1, 2)
