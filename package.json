@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/sergueyarellano/sinonworkshop#readme",
   "dependencies": {
+    "blue-tape": "^1.0.0",
     "faucet": "0.0.1",
     "istanbul": "^0.4.5",
     "nodemon": "^1.11.0",
