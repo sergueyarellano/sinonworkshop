@@ -1,17 +1,17 @@
 const test = require('tape')
 const promises = require('../../lib/promises.js')
 
-test('toss: should toss a 6', (t) => {
+test('toss: should toss a 6', (assert) => {
   const expected = 6
 
   promises.toss(6)
   .then(actual => {
-    t.deepEqual(actual, expected)
+    assert.deepEqual(actual, expected)
   })
-  t.end()
+  assert.end()
 })
 
-test('toss: should toss an error', (t) => {
+test('toss: should toss an error', (assert) => {
   const expected = 'Not a six'
 
   promises.toss(4)
@@ -19,7 +19,7 @@ test('toss: should toss an error', (t) => {
     // rejects value, throw error
   })
   .catch(error => {
-    t.deepEqual(error, expected)
+    assert.deepEqual(error, expected)
   })
-  t.end()
+  assert.end()
 })
