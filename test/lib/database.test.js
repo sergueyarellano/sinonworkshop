@@ -3,30 +3,32 @@ const sinon = require('sinon')
 const databaseConnection = require('../../lib/database.js')
 
 test('get Full name from database', (assert) => {
-  const response = {
+  const expected = {
     userName: 'David',
     firstName: 'Rodríguez',
     nickName: 'xrace300'
   }
-  const stub = sinon.stub(databaseConnection, 'getUserInfo').returns(response)
+  const stub = sinon.stub(databaseConnection, 'getUserInfo').returns(expected)
+  const actual = databaseConnection.getUserInfo()
 
-  assert.deepEqual(databaseConnection.getUserInfo(), response)
+  assert.deepEqual(actual, expected)
   stub.restore()
   assert.end()
 })
 
 test('get User info FOR DAVID ONLY', (assert) => {
-  const response = {
+  const expected = {
     userName: 'David',
     firstName: 'Rodríguez',
     nickName: 'xrace300'
   }
 
   let mock = sinon.mock(databaseConnection)
+  mock.expects('getUserInfo').returns(expected)
 
-  mock.expects('getUserInfo').returns(response)
+  const actual = databaseConnection.getUserInfo('David')
 
-  assert.deepEqual(databaseConnection.getUserInfo('David'), response)
+  assert.deepEqual(actual, expected)
   assert.end()
   mock.verify()
 })
