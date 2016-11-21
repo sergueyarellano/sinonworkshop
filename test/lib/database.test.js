@@ -4,7 +4,7 @@ const databaseConnection = require('../../lib/database.js')
 
 test('get Full name from database', (assert) => {
   const expected = {
-    userName: 'David',
+    userName: 'Jules',
     firstName: 'Rodríguez',
     nickName: 'xrace300'
   }
@@ -18,7 +18,7 @@ test('get Full name from database', (assert) => {
 
 test('get User info FOR DAVID ONLY', (assert) => {
   const expected = {
-    userName: 'David',
+    userName: 'Jules',
     firstName: 'Rodríguez',
     nickName: 'xrace300'
   }
@@ -33,11 +33,15 @@ test('get User info FOR DAVID ONLY', (assert) => {
   mock.verify()
 })
 
+// mock, debe de cumplir, verificar las expectativas pre-programadas despues
+// de invocar el metodo
+// stub, consiste en pre-programar respuestas recubriendo el metodo.
+
 test('get Error FOR INVALID USER', (assert) => {
   const mock = sinon.mock(databaseConnection)
   const spy = sinon.spy(databaseConnection, 'getManOfTheDay')
 
-  mock.expects('getUserInfo').once().withArgs('Serguey').throws()
+  mock.expects('getUserInfo').once().withArgs('Charles').throws()
 
   try {
     console.log(databaseConnection.getManOfTheDay())

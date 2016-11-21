@@ -32,7 +32,7 @@ test('invoke: should subtract three numbers', (assert) => {
 
 test('invoke: should throw an error if the method is not defined', (assert) => {
   const methods = ['multiply', 'add', 'traverse']
-  const expected = ` is not defined in the invoke module`
+  const expected = ' is not defined in the invoke module'
   const spyInvoke = sinon.spy(codeModule, 'invoke')
   const tryCatchTest = (method) => {
     try {
@@ -45,9 +45,14 @@ test('invoke: should throw an error if the method is not defined', (assert) => {
   methods.forEach(tryCatchTest)
   spyInvoke.restore()
 
-  assert.ok(spyInvoke.calledThrice)
-  assert.deepEqual(spyInvoke.firstCall.args[0], 'multiply')
-  assert.deepEqual(spyInvoke.secondCall.args[0], 'add')
   assert.deepEqual(spyInvoke.lastCall.args[0], 'traverse')
+  assert.end()
+})
+
+test('getRandomArbitrary: should return a number between 2 and 10', (assert) => {
+  const isDelimited = (value) => value >= 2 && value <= 10
+  const actual = isDelimited(codeModule.getRandomArbitrary(2, 10))
+
+  assert.ok(actual)
   assert.end()
 })
