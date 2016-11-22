@@ -10,7 +10,7 @@
     "tape": "blue-tape test/**/*.test.js | faucet",
     "test": "npm run lint && npm run coverage | tap-spec",
     "test-debug": "browserify test/lib/*.test.js | browser-run -p 2222 | faucet",
-    "watch:test": "nodemon --exec \"npm run tape\""
+    "watch:test": "nodemon --exec \"npm run test-debug\""
   },
   "eslintConfig": {
     "env": {
