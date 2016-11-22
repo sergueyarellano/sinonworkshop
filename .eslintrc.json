@@ -1,0 +1,33 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 6
+  },
+  "env": {
+    "node": true,
+    "jquery": true,
+    "amd": true
+  },
+  "rules": {
+    "indent": [0,2],
+    "linebreak-style": [2,"unix"],
+    "semi": [2,"always"],
+    "eqeqeq":2,
+    "guard-for-in":2,
+    "no-redeclare":2,
+    "no-loop-func":2,
+    "no-fallthrough":2,
+    "curly":2,
+    "no-alert":2,
+    "no-native-reassign":2,
+    "no-labels":2,
+    "no-with":2,
+    "no-new-object":2,
+    "no-array-constructor":2,
+    "no-eval":2,
+    "no-debugger":2,
+    "no-dupe-keys":2,
+    "comma-dangle":2,
+    "no-new-wrappers":2,
+    "quotes": [2, "single", "avoid-escape"]
+  }
+}
