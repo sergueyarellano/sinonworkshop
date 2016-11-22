@@ -1,55 +1,51 @@
-const test = require('tape')
-const sinon = require('sinon')
-const databaseConnection = require('../../lib/database.js')
+const test = require('tape');
+const sinon = require('sinon');
+const databaseConnection = require('../../lib/database.js');
 
-test('get Full name from database', (assert) => {
+test.skip('get Full name from database', (assert) => {
   const expected = {
     userName: 'Jules',
     firstName: 'Rodríguez',
     nickName: 'xrace300'
-  }
-  const stub = sinon.stub(databaseConnection, 'getUserInfo').returns(expected)
-  const actual = databaseConnection.getUserInfo()
+  };
+  const stub = sinon.stub(databaseConnection, 'getUserInfo').returns(expected);
+  const actual = databaseConnection.getUserInfo();
 
-  assert.deepEqual(actual, expected)
-  stub.restore()
-  assert.end()
-})
+  assert.deepEqual(actual, expected);
+  stub.restore();
+  assert.end();
+});
 
-test('get User info FOR DAVID ONLY', (assert) => {
+test.skip('get User info FOR DAVID ONLY', (assert) => {
   const expected = {
     userName: 'Jules',
     firstName: 'Rodríguez',
     nickName: 'xrace300'
-  }
+  };
 
-  let mock = sinon.mock(databaseConnection)
-  mock.expects('getUserInfo').returns(expected)
+  let mock = sinon.mock(databaseConnection);
+  mock.expects('getUserInfo').returns(expected);
 
-  const actual = databaseConnection.getUserInfo('David')
+  const actual = databaseConnection.getUserInfo('David');
 
-  assert.deepEqual(actual, expected)
-  assert.end()
-  mock.verify()
-})
+  assert.deepEqual(actual, expected);
+  assert.end();
+  mock.verify();
+});
 
-// mock, debe de cumplir, verificar las expectativas pre-programadas despues
-// de invocar el metodo
-// stub, consiste en pre-programar respuestas recubriendo el metodo.
+test.skip('get Error FOR INVALID USER', (assert) => {
+  const mock = sinon.mock(databaseConnection);
+  const spy = sinon.spy(databaseConnection, 'getManOfTheDay');
 
-test('get Error FOR INVALID USER', (assert) => {
-  const mock = sinon.mock(databaseConnection)
-  const spy = sinon.spy(databaseConnection, 'getManOfTheDay')
-
-  mock.expects('getUserInfo').once().withArgs('Charles').throws()
+  mock.expects('getUserInfo').once().withArgs('Charles').throws();
 
   try {
-    console.log(databaseConnection.getManOfTheDay())
+    console.log(databaseConnection.getManOfTheDay());
   } catch (error) {
-    console.log('Error capturado!!!')
+    console.log('Error capturado!!!');
   }
 
-  assert.true(spy.threw())
-  assert.end()
-  mock.verify()
-})
+  assert.true(spy.threw());
+  assert.end();
+  mock.verify();
+});

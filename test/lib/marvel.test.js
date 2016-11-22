@@ -2,11 +2,11 @@ const test = require('blue-tape');
 const sinon = require('sinon');
 require('jsdom-global')();
 global.$ = require('jquery');
-const renderLib = require('../../lib/marvelrender');
-const apiCallLib = require('../../lib/marvelapicalls');
+const render = require('../../lib/render');
+const marvel = require('../../lib/marvel');
 
 test('renderFantasticButton: should render button', (assert) => {
-  renderLib.renderFantasticButton('click me!');
+  render.renderFantasticButton('click me!');
   let actual = $('button').text();
   let expected = 'click me!';
 
@@ -17,8 +17,8 @@ test('renderFantasticButton: should render button', (assert) => {
 });
 
 test('renderFantasticButton: button sould hide on click', (assert) => {
-  let stub = sinon.stub(apiCallLib, 'getSuperHero');
-  renderLib.renderFantasticButton('click me again!');
+  let stub = sinon.stub(marvel, 'getSuperHero');
+  render.renderFantasticButton('click me again!');
   $('button').click();
   let actual = $('button').css('display');
   let expected = 'none';
@@ -31,23 +31,41 @@ test('renderFantasticButton: button sould hide on click', (assert) => {
 
 });
 
-test('renderFantasticButton: should call getSuperHero',
-(assert) => {
-  let spy = sinon.spy(apiCallLib, 'getSuperHero');
+test('renderImage: should render a image', (assert) => {
+  let path = 'my/path';
+  let extension = 'jpg';
+  let name = 'Spider-Man';
+  let desc = 'Bitten by a spider';
+  render.renderImage(path, extension, name, desc);
+  let actual = $('img').attr('src');
+  let expected = 'my/path.jpg';
+  assert.deepEqual(actual, expected);
 
-  renderLib.renderFantasticButton();
-  $('button').click();
-  assert.ok(spy.calledOnce);
-
-  $('button').remove();
-  spy.restore();
+  // do not forget to leave the environment and DOM clean
+  $('img[src="my/path.jpg"]').parent().remove();
   assert.end();
 });
 
-test('getSuperHero: should return a promise with spider man data', (assert) => {
-  return apiCallLib.getSuperHero('spider-man').then((result) => {
-    assert.deepEqual(result.data[0].name, 'Spider-Man');
-  });
+test('INTEGRATION: clicking on button should display a profile of spider man', (assert) => {
+  let path = 'my/path';
+  let ext = 'jpg';
+  let name = 'Spider-Man';
+  let desc = 'Bitten by a spider';
+  let stub = sinon.stub(marvel, 'getSuperHero');
+  stub.returns(render.renderImage(path, ext, name, desc));
+
+  render.renderFantasticButton('click me!');
+  $('button').click();
+  let actual = $('img').css('display');
+  let expected = 'block';
+
+  assert.deepEqual(actual, expected);
+
+  $('button').remove();
+  $('img').parent().remove();
+  stub.restore();
+  assert.end();
 });
 
-test('')
+// remove
+marvel.getSuperHero('spider-man');

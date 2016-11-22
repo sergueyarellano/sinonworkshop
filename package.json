@@ -4,13 +4,15 @@
   "description": "Practical workshop with sinon.js and tape",
   "main": "lib/code.js",
   "scripts": {
-    "lint": " standard --verbose | snazzy",
+    "lint": " eslint lib/* test/lib/* --color | snazzy",
     "precommit": "npm test",
     "coverage": "istanbul cover tape -- test/index.test.js",
     "tape": "blue-tape test/**/*.test.js | faucet",
     "test": "npm run lint && npm run coverage | tap-spec",
     "test-debug": "browserify test/lib/*.test.js | browser-run -p 2222 | faucet",
-    "watch:test": "nodemon --exec \"npm run test-debug\""
+    "watch:test": "nodemon --exec \"npm run test-debug\"",
+    "watch:tape": "nodemon --exec \"npm run tape\""
+
   },
   "eslintConfig": {
     "env": {
