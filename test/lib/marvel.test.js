@@ -69,5 +69,5 @@ test('INTEGRATION: clicking on button should display a profile of spider man', (
 
 // remove
 test('for presentation purposes', (assert) => {
-  render.renderFantasticButton('click me!');  
+  render.renderFantasticButton('click me!');    
 });
