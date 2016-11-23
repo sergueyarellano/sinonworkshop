@@ -2,6 +2,8 @@ const test = require('blue-tape');
 const sinon = require('sinon');
 require('jsdom-global')();
 global.$ = require('jquery');
+// TODO: add these resources to global
+// in order to require here with a single function
 const render = require('../../lib/render');
 const marvel = require('../../lib/marvel');
 
@@ -69,5 +71,5 @@ test('INTEGRATION: clicking on button should display a profile of spider man', (
 
 // remove
 test('for presentation purposes', (assert) => {
-  render.renderFantasticButton('click me!');    
+  render.renderFantasticButton('click me!');
 });
