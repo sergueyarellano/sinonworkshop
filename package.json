@@ -2,16 +2,16 @@
   "name": "sinonworkshop",
   "version": "1.0.0",
   "description": "Practical workshop with sinon.js and tape",
-  "main": "lib/code.js",
+  "main": "lib/marvel.js",
   "scripts": {
     "lint": " eslint lib/* test/lib/* --color | snazzy",
     "precommit": "npm test",
     "coverage": "istanbul cover tape -- test/index.test.js",
     "tape": "blue-tape test/**/*.test.js | faucet",
     "test": "npm run lint && npm run coverage | tap-spec",
-    "test-debug": "NODE_ENV=production browserify test/lib/marvel.test.js | browser-run -p 2222 | faucet",
-    "watch:test": "nodemon --exec \"npm run test-debug\"",
-    "watch:tape": "nodemon --exec \"npm run tape\""
+    "test-debug": "NODE_ENV=production browserify --dg test/lib/marvel.test.js | browser-run -p 2222 | faucet",
+    "w:test-debug": "nodemon --exec \"npm run test-debug\"",
+    "w:tape": "nodemon -e js --exec \"npm run tape\""
   },
   "eslintConfig": {
     "env": {
@@ -32,15 +32,18 @@
     "url": "https://github.com/sergueyarellano/sinonworkshop/issues"
   },
   "homepage": "https://github.com/sergueyarellano/sinonworkshop#readme",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
     "blue-tape": "^1.0.0",
     "browser-run": "^3.3.0",
     "browserify": "^13.1.1",
+    "eslint": "^3.10.2",
     "faucet": "0.0.1",
     "istanbul": "^0.4.5",
     "jquery": "^3.1.1",
     "jsdom": "^9.8.3",
     "jsdom-global": "^2.1.0",
+    "marvel-api": "^1.1.0",
     "nodemon": "^1.11.0",
     "request": "^2.79.0",
     "require-all": "^2.0.0",
@@ -49,11 +52,10 @@
     "standard": "^8.5.0",
     "tap-spec": "^4.1.1",
     "tape": "^4.6.2",
-    "underscore": "^1.8.3"
-  },
-  "devDependencies": {
-    "eslint": "^3.10.2",
-    "marvel-api": "^1.1.0",
-    "uglify-js": "^2.7.4"
+    "uglify-js": "^2.7.4",
+    "underscore": "^1.8.3",
+    "watchify": "^3.7.0",
+    "webpack": "^1.13.3",
+    "webpack-dev-server": "^1.16.2"
   }
 }
