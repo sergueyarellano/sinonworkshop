@@ -1,11 +1,13 @@
-const test = require('blue-tape');
-const sinon = require('sinon');
-require('jsdom-global')();
-global.$ = require('jquery');
-// TODO: add these resources to global
-// in order to require here with a single function
+require('../env/initBackground')();
+const console = require('console-browserify');
+
 const render = require('../../lib/render');
-const marvel = require('../../lib/marvel');
+const handler = require('../../lib/handler');
+const api = require('marvel-api');
+const marvel = api.createClient({
+  publicKey: '1e2db92a6bcb00833909e51dc61bfce0'
+  , privateKey: '452c66dca88cca7fe202f194325edb234849ad8e'
+});
 
 test('renderFantasticButton: should render button', (assert) => {
   render.renderFantasticButton('click me!');
@@ -19,7 +21,7 @@ test('renderFantasticButton: should render button', (assert) => {
 });
 
 test('renderFantasticButton: button sould hide on click', (assert) => {
-  let stub = sinon.stub(marvel, 'getSuperHero');
+  let stub = sinon.stub(handler, 'callMarvel');
   render.renderFantasticButton('click me again!');
   $('button').click();
   let actual = $('button').css('display');
@@ -30,7 +32,6 @@ test('renderFantasticButton: button sould hide on click', (assert) => {
   $('button').remove();
   stub.restore();
   assert.end();
-
 });
 
 test('renderImage: should render a image', (assert) => {
@@ -53,7 +54,7 @@ test('INTEGRATION: clicking on button should display a profile of spider man', (
   let ext = 'jpg';
   let name = 'Spider-Man';
   let desc = 'Bitten by a spider';
-  let stub = sinon.stub(marvel, 'getSuperHero');
+  let stub = sinon.stub(handler, 'callMarvel');
   stub.returns(render.renderImage(path, ext, name, desc));
 
   render.renderFantasticButton('click me!');
@@ -72,4 +73,6 @@ test('INTEGRATION: clicking on button should display a profile of spider man', (
 // remove
 test('for presentation purposes', (assert) => {
   render.renderFantasticButton('click me!');
+  assert.ok(true);
+  assert.end();
 });
