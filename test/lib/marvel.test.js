@@ -1,13 +1,7 @@
 require('../env/initBackground')();
-const console = require('console-browserify');
 
 const render = require('../../lib/render');
 const handler = require('../../lib/handler');
-const api = require('marvel-api');
-const marvel = api.createClient({
-  publicKey: '1e2db92a6bcb00833909e51dc61bfce0'
-  , privateKey: '452c66dca88cca7fe202f194325edb234849ad8e'
-});
 
 test('renderFantasticButton: should render button', (assert) => {
   render.renderFantasticButton('click me!');
@@ -15,7 +9,6 @@ test('renderFantasticButton: should render button', (assert) => {
   let expected = 'click me!';
 
   assert.deepEqual(actual, expected);
-
   $('button').remove();
   assert.end();
 });
@@ -55,10 +48,10 @@ test('INTEGRATION: clicking on button should display a profile of spider man', (
   let name = 'Spider-Man';
   let desc = 'Bitten by a spider';
   let stub = sinon.stub(handler, 'callMarvel');
-  stub.returns(render.renderImage(path, ext, name, desc));
 
   render.renderFantasticButton('click me!');
   $('button').click();
+  stub.returns(render.renderImage(path, ext, name, desc));
   let actual = $('img').css('display');
   let expected = 'block';
 
