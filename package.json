@@ -9,7 +9,7 @@
     "coverage": "istanbul cover tape -- test/index.test.js",
     "tape": "browserify test/**/*.test.js | tape-run | faucet",
     "test": "npm run coverage | tap-spec",
-    "test-debug": "NODE_ENV=production browserify --dg test/lib/marvel.test.js | browser-run -p 2222 | faucet",
+    "test-debug": "browserify --dg test/lib/marvel.test.js | browser-run -p 2222 | faucet",
     "w:test-debug": "nodemon --exec \"npm run test-debug\"",
     "w:tape": "nodemon -e js --exec \"npm run tape\""
   },
