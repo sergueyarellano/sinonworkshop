@@ -7,8 +7,8 @@
     "lint": " eslint lib/* test/lib/* --color | snazzy",
     "precommit": "npm test",
     "coverage": "istanbul cover tape -- test/index.test.js",
-    "tape": "blue-tape test/**/*.test.js | faucet",
-    "test": "npm run lint && npm run coverage | tap-spec",
+    "tape": "browserify test/**/*.test.js | tape-run | faucet",
+    "test": "npm run coverage | tap-spec",
     "test-debug": "NODE_ENV=production browserify --dg test/lib/marvel.test.js | browser-run -p 2222 | faucet",
     "w:test-debug": "nodemon --exec \"npm run test-debug\"",
     "w:tape": "nodemon -e js --exec \"npm run tape\""
@@ -52,6 +52,7 @@
     "standard": "^8.5.0",
     "tap-spec": "^4.1.1",
     "tape": "^4.6.2",
+    "tape-run": "^2.1.4",
     "uglify-js": "^2.7.4",
     "underscore": "^1.8.3",
     "watchify": "^3.7.0",

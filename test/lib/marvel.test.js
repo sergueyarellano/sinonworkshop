@@ -21,7 +21,23 @@ test('renderButton: should hide button on click', (assert) => {
   assert.end();
 });
 
-handler.callMarvel('spider-man');
+test('renderView: should render a view involving spider-man', (assert) => {
+  const path = 'my/path';
+  const ext = 'jpg';
+  const description = 'bitten by a spider';
+  const name = 'spider-man';
+  const dataView = {
+    path,
+    ext,
+    description,
+    name
+  };
+  render.renderView(dataView);
+  const result = $(`#${name}`);
+  assert.ok(result.length);
+  assert.end();
+});
+// handler.callMarvel('spider-man');
 
 //
 // const render = require('../../lib/render');
