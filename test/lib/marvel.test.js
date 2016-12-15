@@ -3,8 +3,9 @@ const render = require('../../lib/render');
 const handler = require('../../lib/handler');
 
 test('renderButton: should render button', (assert) => {
-  render.renderButton('click me!');
-  let actual = $('button').text();
+  const myContainer = $('<div>');
+  render.renderButton(myContainer, 'click me!');
+  let actual = myContainer.find('button').text();
   let expected = 'click me!';
 
   assert.deepEqual(actual, expected);
@@ -13,12 +14,16 @@ test('renderButton: should render button', (assert) => {
 });
 
 test('renderButton: should hide button on click', (assert) => {
-  render.renderButton();
-  $('button').click();
-  let actual = $('button').is(':hidden');
-
+  const spy = sinon.spy(handler, 'callMarvel');
+  const myContainer = $('<div>');
+  render.renderButton(myContainer);
+  const btn = myContainer.find('button');
+  btn.click();
+  let actual = btn.is(':hidden');
   assert.ok(actual);
+  assert.ok(spy.calledOnce);
   assert.end();
+  spy.restore();
 });
 
 test('renderView: should render a view involving spider-man', (assert) => {
@@ -32,11 +37,16 @@ test('renderView: should render a view involving spider-man', (assert) => {
     description,
     name
   };
-  render.renderView(dataView);
-  const result = $(`#${name}`);
+  var myContainer = $('<div></div>');
+  render.renderView(myContainer, dataView);
+  const result = myContainer.find(`#${name}`);
   assert.ok(result.length);
   assert.end();
 });
+
+test('integration: should render superhero after clicking button', (assert) => {
+
+})
 // handler.callMarvel('spider-man');
 
 //
